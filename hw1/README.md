@@ -39,8 +39,7 @@
    - `prefix.meta` 顯示：
      - chunk 數量為 `4`
      - chunk 大小為 `1048576`（即 1MB）
-     - prefix 為 `prefix`
-       
+     - prefix 為 `prefix` 。       
 ![meta](image-1.png)
 
 3. **使用 `ee1520_Heal` 正確重建檔案**

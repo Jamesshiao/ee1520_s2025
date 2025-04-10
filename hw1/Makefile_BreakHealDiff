@@ -1,0 +1,37 @@
+# Makefile for f2023, ecs36b
+# myHeal, myBreak, myDiff
+
+CC = gcc
+
+CFLAGS = -g
+
+# rules.
+all: 	myDiff ee1520_Break ee1520_Heal
+
+#
+#
+
+
+ee1520_Break.o:	ee1520_Break.c
+	$(CC) -c $(CFLAGS) ee1520_Break.c
+
+ee1520_Heal.o:	ee1520_Heal.c
+	$(CC) -c $(CFLAGS) ee1520_Heal.c
+
+myDiff.o:	myDiff.c
+	$(CC) -c $(CFLAGS) myDiff.c
+
+ee1520_Break:	ee1520_Break.o
+	$(CC) ee1520_Break.o -o ee1520_Break
+
+ee1520_Heal: ee1520_Heal.o
+	$(CC) ee1520_Heal.o -o ee1520_Heal
+
+myDiff:		myDiff.o
+	$(CC) myDiff.o -o myDiff
+
+
+
+clean:
+	rm -f *.o *~ core  myDiff ee1520_Break ee1520_Heal
+

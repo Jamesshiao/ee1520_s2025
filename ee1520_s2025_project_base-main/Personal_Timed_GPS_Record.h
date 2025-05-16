@@ -8,11 +8,11 @@
 #include "Timed_Location.h"
 
 #include <stdlib.h>
-//#include "ee1520client.h"
-//#include <jsonrpccpp/client/connectors/httpclient.h>
+#include "ee1520client.h"
+#include <jsonrpccpp/client/connectors/httpclient.h>
 
 using namespace std;
-//using namespace jsonrpc;
+using namespace jsonrpc;
 
 class Personal_Timed_GPS_Record : public Core
 {

@@ -87,6 +87,9 @@
 #include "Person.h"
 #include "Personal_Timed_GPS_Record.h"
 #include "Locatable_Thing.h"
+#include <vector>
+#include <string>
+
 
 using namespace std;
 
@@ -100,16 +103,18 @@ public:
   std::string occupation;
   Personal_Timed_GPS_Record GPS_trace;
   Locatable_Thing *phone;
-  
+  std::vector<std::string> trace_labels;
   // constructor
   Traceable_Person(std::string, std::string);
   Traceable_Person(std::string, std::string, GPS_DD *);
   Traceable_Person();
   ~Traceable_Person();
-
+  
+  void addTraceWithLabel(const Timed_Location& tl, const std::string& label);
+  //void addTraceWithLabel(const GPS_DD& loc, const JvTime& time, const std::string& label);
   // something else
   
-  // virtual Json::Value * dump2JSON(void);
+  virtual Json::Value * dump2JSON(void);
   // virtual void JSON2Object(Json::Value *);
 };
 

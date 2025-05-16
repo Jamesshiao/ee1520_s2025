@@ -33,7 +33,7 @@ CORE_OBJS =	Core.o Person.o Post.o Comment.o Reaction.o		\
 
 # rules to build
 
-all: 	ee1520server ee1520update ee1520search ee1520parse ee1520team ee1520casting
+all: 	ee1520server ee1520update ee1520search ee1520parse ee1520team ee1520casting main
 
 #
 #
@@ -158,8 +158,17 @@ ee1520team:		$(CORE_OBJS) ee1520team.o
 ee1520parse:		$(CORE_OBJS) ee1520parse.o
 	$(CC) -o ee1520parse $(CORE_OBJS) ee1520parse.o $(LDFLAGS)
 
+# test
+
+main.o:		main.cpp $(CORE_INCS)
+	$(CC) -c $(CFLAGS) main.cpp
+
+main:		$(CORE_OBJS) main.o
+	$(CC) -o main $(CORE_OBJS) main.o $(LDFLAGS)
+
+
 clean:
 	rm -f	*.o *~ core ee1520server ee1520update ee1520search	\
 	      	ee1520server.h ee1520client.h ee1520team ee1520parse	\
-		ee1520casting
+		ee1520casting main
 

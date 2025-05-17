@@ -83,13 +83,11 @@
 // But, we should start it with something SIMPLE (first -- for hw2-3 at least)
 // "One device per person"
 
-
 #include "Person.h"
 #include "Personal_Timed_GPS_Record.h"
 #include "Locatable_Thing.h"
 #include <vector>
 #include <string>
-
 
 using namespace std;
 
@@ -98,24 +96,32 @@ class Traceable_Person : public Person
 private:
 protected:
 public:
-
   // something else
   std::string occupation;
   Personal_Timed_GPS_Record GPS_trace;
   Locatable_Thing *phone;
   std::vector<std::string> trace_labels;
+  // std::string current_status;
+  std::vector<std::string> trace_statuses;
   // constructor
   Traceable_Person(std::string, std::string);
   Traceable_Person(std::string, std::string, GPS_DD *);
   Traceable_Person();
   ~Traceable_Person();
-  
-  void addTraceWithLabel(const Timed_Location& tl, const std::string& label);
-  //void addTraceWithLabel(const GPS_DD& loc, const JvTime& time, const std::string& label);
-  // something else
-  
-  virtual Json::Value * dump2JSON(void);
+
+  void addTraceWithLabel(const Timed_Location &tl, const std::string &label);
+
+  // 加入 trace：含 label 與 status
+  void addTrace(const Timed_Location &tl, const std::string &label, const std::string &status);
+
+  // void setCurrentStatus(const std::string &status);
+  // std::string getCurrentStatus() const;
+
+  // void addTraceWithLabel(const GPS_DD& loc, const JvTime& time, const std::string& label);
+  //  something else
+
+  virtual Json::Value *dump2JSON(void);
   // virtual void JSON2Object(Json::Value *);
 };
 
-#endif  /* _TRACEABLE_PERSON_H_ */
+#endif /* _TRACEABLE_PERSON_H_ */

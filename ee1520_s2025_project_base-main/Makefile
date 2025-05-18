@@ -29,11 +29,11 @@ CORE_OBJS =	Core.o Person.o Post.o Comment.o Reaction.o		\
 		Holdable.o Locatable.o ee1520_JSON.o Message.o		\
 		Timed_Location.o ee1520_Exception.o			\
 		Personal_Timed_GPS_Record.o Locatable_Thing.o		\
-		Traceable_Person.o
+		Traceable_Person.o Traceable_Bus.o
 
 # rules to build
 
-all: 	ee1520server ee1520update ee1520search ee1520parse ee1520team ee1520casting main
+all: 	ee1520server ee1520update ee1520search ee1520parse ee1520team ee1520casting main bus_main
 
 #
 #
@@ -140,6 +140,10 @@ Link.o:			Link.cpp Link.h $(CORE_INCS)
 Action.o:		Action.cpp Action.h $(CORE_INCS)
 	$(CC) -c $(CFLAGS) Action.cpp
 
+Traceable_Bus.o:	Traceable_Bus.cpp Traceable_Bus.h $(CORE_INCS)
+	$(CC) -c $(CFLAGS) Traceable_Bus.cpp	
+
+
 ee1520casting:		$(CORE_OBJS) ee1520casting.o
 	$(CC) -o ee1520casting $(CORE_OBJS) ee1520casting.o $(LDFLAGS)
 
@@ -166,9 +170,16 @@ main.o:		main.cpp $(CORE_INCS)
 main:		$(CORE_OBJS) main.o
 	$(CC) -o main $(CORE_OBJS) main.o $(LDFLAGS)
 
+bus_main.o:		bus_main.cpp  $(CORE_INCS)
+	$(CC) -c $(CFLAGS) bus_main.cpp		
+
+bus_main:		$(CORE_OBJS)  bus_main.o
+	$(CC) -o bus_main $(CORE_OBJS)  bus_main.o $(LDFLAGS)	
+
+
 
 clean:
 	rm -f	*.o *~ core ee1520server ee1520update ee1520search	\
 	      	ee1520server.h ee1520client.h ee1520team ee1520parse	\
-		ee1520casting main
+		ee1520casting main bus_main
 

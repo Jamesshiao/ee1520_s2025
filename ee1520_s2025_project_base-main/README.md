@@ -7,8 +7,10 @@
 ## 📁 專案檔案結構
 
 - `main.cpp`: 主要執行程式，負責建立人物物件、記錄追蹤資料並輸出 JSON 結果
+- `bus_main.cpp`：延伸測試，加入 Traceable_Bus 類別與乘客關聯
 - `Traceable_Person.h / .cpp`: 負責描述可追蹤人物，支援記錄位置、狀態、標籤，並能輸出為 JSON
 - `Timed_Location.h / .cpp`: 表示包含時間與 GPS 的資料點
+- `Traceable_Bus.h / .cpp`：定義可追蹤公車，記錄乘客清單並整合輸出
 - `GPS.h`: 處理 "latitude","longitude"
 - `JvTime.h`: 處理 ISO 8601 格式的時間（e.g., `2025-04-14T14:30:00+0000`）
 
@@ -59,9 +61,9 @@ make
 
 ```
 
-## 🔧 編譯結果
+### 執行結果（`main` 輸出）
 
-```
+```json 
 {
   "1.name" : "Felix Wu",
   "2.occupation" : "instructor",
@@ -130,3 +132,107 @@ make
 }
 
 ```
+
+### 編譯並執行公車延伸測試
+
+```bash
+make bus_main
+./bus_main
+```
+
+### 執行結果（`bus_main` 輸出）
+
+
+```json
+{
+        "bus_name" : "Bus 77",
+        "passengers" :
+        [
+                {
+                        "GPS trace" :
+                        [
+                                {
+                                        "label" : "NCKU EE 4th floor",
+                                        "location" :
+                                        {
+                                                "latitude" : 22.996776000000001,
+                                                "longitude" : 120.222415
+                                        },
+                                        "status" : "ended class",
+                                        "time" :
+                                        {
+                                                "time" : "2025-04-14T14:00:00+"
+                                        }
+                                },
+                                {
+                                        "label" : "Chang-Rong Bus Stop",
+                                        "location" :
+                                        {
+                                                "latitude" : 22.9971,
+                                                "longitude" : 120.2222
+                                        },
+                                        "status" : "on Bus77",
+                                        "time" :
+                                        {
+                                                "time" : "2025-04-14T14:30:00+"
+                                        }
+                                },
+                                {
+                                        "label" : "Moore and Pollock",
+                                        "location" :
+                                        {
+                                                "latitude" : 22.989999999999998,
+                                                "longitude" : 120.215
+                                        },
+                                        "status" : "got off Bus77",
+                                        "time" :
+                                        {
+                                                "time" : "2025-04-14T15:15:00+"
+                                        }
+                                }
+                        ],
+                        "name" : "Felix Wu",
+                        "occupation" : "instructor"
+                },
+                {
+                        "GPS trace" :
+                        [
+                                {
+                                        "label" : "Chang-Rong Bus Stop",
+                                        "location" :
+                                        {
+                                                "latitude" : 22.9971,
+                                                "longitude" : 120.2222
+                                        },
+                                        "status" : "on Bus77",
+                                        "time" :
+                                        {
+                                                "time" : "2025-04-14T14:30:00+"
+                                        }
+                                },
+                                {
+                                        "label" : "NCKU Hospital",
+                                        "location" :
+                                        {
+                                                "latitude" : 22.998079000000001,
+                                                "longitude" : 120.222168
+                                        },
+                                        "status" : "get off the Bus 77",
+                                        "time" :
+                                        {
+                                                "time" : "2025-04-14T14:45:00+"
+                                        }
+                                }
+                        ],
+                        "name" : "John",
+                        "occupation" : "student"
+                }
+        ]
+}
+
+
+```
+
+
+
+
